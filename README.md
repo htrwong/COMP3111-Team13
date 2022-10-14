@@ -30,3 +30,5 @@ Task: OUTPUT
 [our Notion workspace](https://www.notion.so/COMP3111-Project-G-13-b5bb40dfee6449b2b316ab9311e82ba5)
 
 [GitHub Repo](https://github.com/htrwong/COMP3111-Team13)
+
+[Activity 1](https://docs.google.com/document/d/18ZrqcXtz45--5ZtdpY7UDq379mC109Vt/edit)
