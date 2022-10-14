@@ -1,4 +1,4 @@
-##COMP3111 Project Team 13
+## COMP3111 Project Team 13
 
 https://github.com/htrwong/COMP3111-Team13
 
