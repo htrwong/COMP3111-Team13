@@ -1,7 +1,5 @@
 ## COMP3111 Project Team 13
 
-https://github.com/htrwong/COMP3111-Team13
-
 **Member 1**
 ```
 Name: Tang Tsz Ying
@@ -28,3 +26,6 @@ GitHub ID: DuckAndChips
 dev branch: jaden
 Task: OUTPUT
 ```
+### Links
+[our Notion workspace](https://www.notion.so/COMP3111-Project-G-13-b5bb40dfee6449b2b316ab9311e82ba5)
+[GitHub Repo](https://github.com/htrwong/COMP3111-Team13)
