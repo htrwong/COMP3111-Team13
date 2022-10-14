@@ -7,7 +7,7 @@ https://github.com/htrwong/COMP3111-Team13
 Name: Tang Tsz Ying
 Email: tytangad@connect.ust.hk
 GitHub ID: tytangad
-dev branch: Cherry
+dev branch: cherry
 Task: INPUT
 ```
 
@@ -16,7 +16,7 @@ Task: INPUT
 Name: Wong Hei Tung
 Email: htrwong@connect.ust.hk
 GitHub ID: htrwong
-dev branch: Radi
+dev branch: radi
 Task: PROCESS
 ```
 
@@ -25,6 +25,6 @@ Task: PROCESS
 Name: Tse Hoi Chun
 Email: hctseab@connect.ust.hk
 GitHub ID: DuckAndChips
-dev branch: Jaden
+dev branch: jaden
 Task: OUTPUT
 ```
