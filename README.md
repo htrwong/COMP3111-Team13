@@ -31,4 +31,4 @@ Task: OUTPUT
 
 [GitHub Repo](https://github.com/htrwong/COMP3111-Team13)
 
-[Activity 1](https://docs.google.com/document/d/18ZrqcXtz45--5ZtdpY7UDq379mC109Vt/edit)
+[Activity 1](https://drive.google.com/file/d/18_XIcYVOiL3CGjXKXjbUr1nTVjeN0Q_y/view)
