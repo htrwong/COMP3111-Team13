@@ -3,10 +3,28 @@
  */
 package atu_system.atu_app;
 
+// Import classes from shared library like this
 import atu_system.utilities.SampleUtilsClass;
 
-public class App {
+import javafx.application.Application;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+
+public class App extends Application {
     public static void main(String[] args) {
+    	// Use classes from shared library like this
         System.out.println(SampleUtilsClass.getString());
+        
+        launch(args);
     }
+
+	@Override
+	public void start(Stage stage) throws Exception {
+		Group sampleRoot = new Group(); // Create root from FXML loader when the FXML is ready
+		Scene sampleScene = new Scene(sampleRoot);
+		
+		stage.setScene(sampleScene);
+		stage.show();
+	}
 }

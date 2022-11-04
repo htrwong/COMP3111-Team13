@@ -4,13 +4,23 @@
 
 plugins {
     id 'atu_system.java-application-conventions'
+    id 'org.openjfx.javafxplugin' version '0.0.13'
 }
 
 dependencies {
     implementation project(':utilities')
 }
 
+repositories {
+    mavenCentral()
+}
+
 application {
     // Define the main class for the application.
     mainClass = 'atu_system.atu_app.App'
+}
+
+javafx {
+    version = "19"
+    modules = [ 'javafx.controls', 'javafx.fxml' ]
 }
