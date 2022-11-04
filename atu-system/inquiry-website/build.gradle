@@ -1,0 +1,37 @@
+buildscript {
+  repositories {
+    mavenCentral()
+  }
+
+  dependencies {
+    classpath 'org.gretty:gretty:4.0.3'
+  }
+}
+
+plugins {
+    id 'atu_system.java-application-conventions'
+    id 'war'
+}
+
+repositories {
+  mavenCentral()
+}
+
+if (!project.plugins.findPlugin(org.akhikhl.gretty.GrettyPlugin))
+  project.apply(plugin: org.akhikhl.gretty.GrettyPlugin)
+
+dependencies {
+    implementation project(':utilities')
+    providedCompile 'jakarta.servlet:jakarta.servlet-api:4.0.1'
+}
+
+compileJava.options.encoding = 'UTF-8'
+compileTestJava.options.encoding = 'UTF-8'
+
+/*
+Add this once the webapp is ready to run :)
+
+import org.akhikhl.gretty.AppStartTask
+task('run', type: AppStartTask) {}
+*/
+
