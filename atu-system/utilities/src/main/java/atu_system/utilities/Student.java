@@ -35,22 +35,22 @@ public class Student {
 		return studentName;
 	}
 	
-	public int getk1()
+	public int getK1Energy()
 	{
 		return k1Energy;
 	}
 	
-	public int getk2()
+	public int getK2Energy()
 	{
 		return k2Energy;
 	}
 	
-	public boolean getk3Tick1()
+	public boolean getK3Tick1()
 	{
 		return k3Tick1;
 	}
 	
-	public boolean getk3Tick2()
+	public boolean getK3Tick2()
 	{
 		return k3Tick2;
 	}

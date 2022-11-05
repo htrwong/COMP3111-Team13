@@ -1,11 +1,10 @@
 package atu_system.utilities;
 
-
-
 public class Team {
+	
 	private int id;
 	private Student[] members;
-	public static int arrLen = 4;
+	public static final int MAX_NUM_OF_TEAM_MEMBERS = 4;
 	
 	//CONSTRUCTOR
 	public Team(int id)
@@ -13,20 +12,28 @@ public class Team {
 		this.id = id;
 		this.members = new Student[4];
 		
-		//initialize stu array as null
-		for(int i = 0; i < arrLen; i++)
+		//initialize student array as null
+		for(int i = 0; i < MAX_NUM_OF_TEAM_MEMBERS; i++)
 		{
 			this.members[i] = null;
 		}
 		
 	}
 	
+	public int getId() {
+		return this.id;
+	}
+	
+	public Student[] getMembers() {
+		return this.members;
+	}
+	
 	public void appendMem(Student mem)
 	{
-		for(int i = 0; i < arrLen; i++)
+		for(int i = 0; i < MAX_NUM_OF_TEAM_MEMBERS; i++)
 		{
 			//ideally need to put leader in members[0]
-			//figure out asso class later
+			//figure out association class later
 			
 			if(this.members[i] == null) 
 			{
