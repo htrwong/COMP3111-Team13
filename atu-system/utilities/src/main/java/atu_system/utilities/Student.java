@@ -1,7 +1,8 @@
 package atu_system.utilities;
 
 public class Student {
-	//var
+	
+	// Attributes
 	private String studentID;
 	private String studentName;
 	private int k1Energy;
@@ -11,20 +12,20 @@ public class Student {
 	private boolean myPreference;
 	private String concerns;
 	
-	//constructor
+	// Constructor
 	public Student(String studentID, String studentName, int k1Energy, int k2Energy, boolean k3Tick1, boolean k3Tick2, boolean myPreference, String concerns)
 	{
 		this.studentID = studentID;
 		this.studentName = studentName;
 		this.k1Energy = k1Energy;
 		this.k2Energy = k2Energy;
-		this.k3Tick1 = k3Tick1;
-		this.k3Tick2 = k3Tick2;
-		this.myPreference = myPreference;
+		this.k3Tick1 = k3Tick1; // Is creative?
+		this.k3Tick2 = k3Tick2; // Willing to take more workload?
+		this.myPreference = myPreference; // Do you want to be a leader?
 		this.concerns = concerns;
 	}
 	
-	//get
+	// Getters
 	public String getID()
 	{
 		return studentID;
@@ -55,7 +56,7 @@ public class Student {
 		return k3Tick2;
 	}
 	
-	public boolean getPref()
+	public boolean getLeaderPreference()
 	{
 		return myPreference;
 	}

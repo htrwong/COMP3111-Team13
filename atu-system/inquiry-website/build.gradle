@@ -23,6 +23,7 @@ if (!project.plugins.findPlugin(org.akhikhl.gretty.GrettyPlugin))
 dependencies {
     implementation project(':utilities')
     providedCompile 'jakarta.servlet:jakarta.servlet-api:4.0.1'
+    testImplementation('junit:junit:4.13')
 }
 
 compileJava.options.encoding = 'UTF-8'
