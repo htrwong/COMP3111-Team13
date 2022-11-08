@@ -9,6 +9,7 @@ plugins {
 
 dependencies {
     implementation project(':utilities')
+    testImplementation('junit:junit:4.13')
 }
 
 repositories {
