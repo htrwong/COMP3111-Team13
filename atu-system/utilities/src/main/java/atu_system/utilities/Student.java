@@ -11,10 +11,9 @@ public class Student {
 	private boolean k3Tick2;
 	private boolean myPreference;
 	private String concerns;
-	private int rowID;
 	
-	//constructor
-	public Student(String studentID, String studentName, int k1Energy, int k2Energy, boolean k3Tick1, boolean k3Tick2, boolean myPreference, String concerns, int rowID)
+	// Constructor
+	public Student(String studentID, String studentName, int k1Energy, int k2Energy, boolean k3Tick1, boolean k3Tick2, boolean myPreference, String concerns)
 	{
 		this.studentID = studentID;
 		this.studentName = studentName;
@@ -24,8 +23,7 @@ public class Student {
 		this.k3Tick2 = k3Tick2; // Willing to take more workload?
 		this.myPreference = myPreference; // Do you want to be a leader?
 		this.concerns = concerns;
-		this.rowID = rowID;
-	} 
+	}
 	
 	// Getters
 	public String getID()
@@ -41,12 +39,12 @@ public class Student {
 	public int getK1Energy()
 	{
 		return k1Energy;
-	} 
+	}
 	
 	public int getK2Energy()
 	{
 		return k2Energy;
-	} 
+	}
 	
 	public boolean getK3Tick1()
 	{
@@ -67,10 +65,5 @@ public class Student {
 	{
 		return concerns;
 	}
-	
-	public int getrowID()
-	{
-		return rowID;
-	} 
 	
 } //END OF CLASS
