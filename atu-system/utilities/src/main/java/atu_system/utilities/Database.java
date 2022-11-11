@@ -23,7 +23,6 @@ public class Database {
 	        InputStream is = classLoader.getResourceAsStream(csvFile);
 	        InputStreamReader isr = new InputStreamReader(is, "UTF-8");
 			
-			//Reader in = new FileReader("/Users/cherb/3111proj/COMP3111-Team13/atu-system/utilities/src/main/resources/StudentData.CSV");
 			BufferedReader br = new BufferedReader(isr);
 			br.readLine();
             Iterable<CSVRecord> records=CSVFormat.DEFAULT.parse(br);

@@ -4,27 +4,33 @@
 package atu_system.atu_app;
 
 // Import classes from shared library like this
-import atu_system.utilities.SampleUtilsClass;
-
+import atu_system.utilities.Database;
 import javafx.application.Application;
-import javafx.scene.Group;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class App extends Application {
     public static void main(String[] args) {
-    	// Use classes from shared library like this
-        System.out.println(SampleUtilsClass.getString());
-        
+    	// Use classes from shared library like this:
+    	// System.out.println(SampleUtilsClass.getString());
+    	String csvFile = "StudentData.CSV";
+    	Database.readStudent(csvFile);
+    	System.out.println(Database.getStudentArray()[0].getName());
+    	
         launch(args);
     }
 
 	@Override
 	public void start(Stage stage) throws Exception {
-		Group sampleRoot = new Group(); // Create root from FXML loader when the FXML is ready
-		Scene sampleScene = new Scene(sampleRoot);
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource("/welcomeScreen.fxml"));
+		Parent root = loader.load(); // Create root from FXML loader when the FXML is ready
+		Scene welcomeScreen = new Scene(root);
+		stage.setTitle("Automatic Teaming Up");
 		
-		stage.setScene(sampleScene);
+		stage.setScene(welcomeScreen);
 		stage.show();
 	}
 }
