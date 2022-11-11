@@ -31,7 +31,7 @@ public class Database {
             for(CSVRecord record:records){
                 studentList.add(new Student(record.get(0), record.get(1), Integer.parseInt(record.get(3)), Integer.parseInt(record.get(4)), 
 						Boolean.parseBoolean(record.get(5)), Boolean.parseBoolean(record.get(6)), Boolean.parseBoolean(record.get(7)), record.get(8), studentCount));
-				studentCount++;
+				studentCount++; 
             }
             br.close();
 		} catch (FileNotFoundException e) {
