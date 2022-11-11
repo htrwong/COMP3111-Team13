@@ -15,7 +15,7 @@ public class Database {
 		studentArray = null;
 	}
 	
-	public static void readStudent(String csvFile){
+	public static Student[] readStudent(String csvFile){
 		ArrayList<Student> studentList = new ArrayList<Student>();
 		
 		try {
@@ -40,6 +40,7 @@ public class Database {
         }
 		studentArray = new Student[studentList.size()];
 		studentArray = studentList.toArray(studentArray);
+		return studentArray;
 	}
 	
 	//get studentArray

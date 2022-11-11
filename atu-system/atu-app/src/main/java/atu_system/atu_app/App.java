@@ -5,6 +5,7 @@ package atu_system.atu_app;
 
 // Import classes from shared library like this
 import atu_system.utilities.Database;
+import atu_system.utilities.Student;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -16,8 +17,8 @@ public class App extends Application {
     	// Use classes from shared library like this:
     	// System.out.println(SampleUtilsClass.getString());
     	String csvFile = "StudentData.CSV";
-    	Database.readStudent(csvFile);
-    	System.out.println(Database.getStudentArray()[0].getName());
+    	Student[] students = Database.readStudent(csvFile);
+    	System.out.println(students[0].getName());
     	
         launch(args);
     }
