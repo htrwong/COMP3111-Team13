@@ -1,5 +1,6 @@
 package atu_system.utilities;
-
+import java.io.*;
+import java.util.*;
 public class Student {
 	
 	// Attributes
@@ -74,3 +75,21 @@ public class Student {
 	} 
 	
 } //END OF CLASS
+
+class SortByK1_desc implements Comparator<Student>
+{
+	public int compare(Student a, Student b)
+	{
+		//desc order
+		return(b.getK1Energy() - a.getK1Energy());
+	}
+}
+
+class SortByK2_asc implements Comparator<Student>
+{
+	public int compare(Student a, Student b)
+	{
+		//asc order
+		return(a.getK2Energy() - b.getK2Energy());
+	}
+}
