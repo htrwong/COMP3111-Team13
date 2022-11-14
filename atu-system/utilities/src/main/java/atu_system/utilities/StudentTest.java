@@ -7,11 +7,22 @@ import org.junit.Test;
 
 public class StudentTest {
 	Student dummy;
+	Student secondStudent;
+	Student thirdStudent;
+	Student testArr[] = new Student[3];
 	
 	@Before
 	public void setUp() throws Exception {
-		dummy = new Student("12345678", "Dummy", 5, 6, true, false, false, "no concern");
+		dummy = new Student("12345678", "Dummy", 5, 6, true, false, false, "no concern", 0);
+		secondStudent = new Student("234", "Another Student", 4, 2, false, true, true, "no concern", 1);
+		thirdStudent = new Student("567", "Another Student", 9, 4, false, false, true, "no concern", 2);
 		assertNotNull(dummy);
+		assertNotNull(secondStudent);
+		assertNotNull(thirdStudent);
+
+		testArr[0] = dummy;
+		testArr[1] = secondStudent;
+		testArr[2] = thirdStudent;
 	}
 	
 	@Test
@@ -45,8 +56,8 @@ public class StudentTest {
 	}
 	//getPref
 	@Test
-	public void testGgetPref() {
-		assertEquals(false, dummy.getPref());
+	public void testGetPref() {
+		assertEquals(false, dummy.getLeaderPreference());
 	}
 	
 	//getConcerns
