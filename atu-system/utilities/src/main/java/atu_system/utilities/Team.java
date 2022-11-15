@@ -20,7 +20,7 @@ public class Team {
 		
 	}
 	
-	public int getID() {
+	public int getId() {
 		return this.id;
 	}
 	

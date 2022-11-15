@@ -13,7 +13,7 @@ public class StudentTester {
 
 	@Before
 	public void setUp() throws Exception {
-		student = new Student("12345678", "Jaden", 1, 2, false, true, false, "Concerns");
+		student = new Student("12345678", "Jaden", 1, 2, false, true, false, "Concerns", 0);
 	}
 
 	@Test
