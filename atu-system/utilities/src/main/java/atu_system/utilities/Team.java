@@ -20,7 +20,7 @@ public class Team {
 		
 	}
 	
-	public int getId() {
+	public int getID() {
 		return this.id;
 	}
 	
@@ -32,9 +32,7 @@ public class Team {
 	{
 		for(int i = 0; i < MAX_NUM_OF_TEAM_MEMBERS; i++)
 		{
-			//ideally need to put leader in members[0]
-			//figure out association class later
-			
+			//handle leader in ATU_Engine RUN_ATU instead
 			if(this.members[i] == null) 
 			{
 				this.members[i] = mem;

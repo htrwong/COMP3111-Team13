@@ -1,5 +1,4 @@
 package atu_system.utilities;
-import java.util.*;
 public class Student {
 	
 	// Attributes
@@ -74,4 +73,5 @@ public class Student {
 	} 
 	
 } //END OF CLASS
+
 
