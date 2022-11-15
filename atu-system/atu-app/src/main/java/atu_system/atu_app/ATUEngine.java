@@ -34,23 +34,23 @@ class SortByRowID implements Comparator<Student>
 //HELPER CLASS END
 
 
-public class ATU_Engine {
+public class ATUEngine {
 	
-	private static ATU_Engine single_instance = null;
+	private static ATUEngine single_instance = null;
 	private Database db;
 	private Team[] allTeams;
 	
-    private ATU_Engine()
+    private ATUEngine()
     {
         //constructor
     	db = null;
     	allTeams = null;;
     }
     
-    public static ATU_Engine getInstance()
+    public static ATUEngine getInstance()
     {
         if (single_instance == null)
-            single_instance = new ATU_Engine();
+            single_instance = new ATUEngine();
         return single_instance;
     }
 
@@ -103,7 +103,7 @@ public class ATU_Engine {
     		stuList.remove(0);
     	}
     	//If remaining students in stuList:
-    	if(stuList.isEmpty() == false) //there are more elements in it
+    	while(stuList.isEmpty() == false) //there are more elements in it, add them as a fourth member of a team.
     	{
     		for(int i = 0; i < stuList.size(); i++)
     		{
