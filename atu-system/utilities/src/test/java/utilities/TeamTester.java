@@ -43,6 +43,8 @@ public class TeamTester {
 		assertEquals(T13.getId(), 13);
 	}
 	
+
+	
 	@Test
 	public void testAppendZero() {
 		
@@ -54,24 +56,44 @@ public class TeamTester {
 		assertEquals(T13.getOneMem(0), Jaden);
 		assertEquals(T13.getOneMem(1), Cherry);
 		assertEquals(T13.getOneMem(2), Radi);
-		
 		Assert.assertArrayEquals(T13.getMembers(), assertArr);
 		
 		
+	}
+
+	@Test
+	public void testLeaderNoSwap() {
+		Student[] assertArr = {Jaden, Radi, null, null};
+		T13.appendMem(Jaden);
+		T13.appendMem(Radi);
+		T13.setupLeader();
 		
-//		System.out.println("testAppendZero");
-//		for(int i = 0; i < 4; i++)
-//		{
-//			if(T13.getOneMem(i) != null)
-//			{
-//				System.out.println(T13.getOneMem(i).getName());
-//			} else {
-//				System.out.println(i);
-//			}
-//		}
-		
+		Assert.assertArrayEquals(T13.getMembers(), assertArr);
+
 	}
 	
+	@Test
+	public void testLeaderSwapped() {
+		Student[] assertArr = {Jaden, Radi, Cherry, null};
+		T13.appendMem(Cherry);
+		T13.appendMem(Radi);
+		T13.appendMem(Jaden);
+		T13.setupLeader();
+		
+		Assert.assertArrayEquals(T13.getMembers(), assertArr);
+
+	}
+	
+	@Test
+	public void testNoPref() {
+		Student[] assertArr = {Radi, Cherry, null, null};
+		T13.appendMem(Radi);
+		T13.appendMem(Cherry);
+		T13.setupLeader();
+		
+		Assert.assertArrayEquals(T13.getMembers(), assertArr);
+
+	}
 	
 	
 

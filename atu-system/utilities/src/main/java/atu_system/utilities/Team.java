@@ -46,23 +46,25 @@ public class Team {
 	
 	public void setupLeader()
 	{
-		int prefCount = 0;
-		for(int i = 0; i < MAX_NUM_OF_TEAM_MEMBERS; i++)
-		{
-			if(this.members[i] == null)
-			{
-				break;
-			} else {
-				if(this.members[i].getLeaderPreference() == true)
-				{
-					prefCount++;
-				}
-			}
-		}
-		//if one person prefers only
+		
+		Student temp; 
 		if(this.members[0].getLeaderPreference() == true)
 		{
-			//this func is done
+
+			return;
+		} else {
+			for(int i = 1; i < MAX_NUM_OF_TEAM_MEMBERS; i++)
+			{
+				if(this.members[i] == null) {return;}
+				if(this.members[i].getLeaderPreference() == true)
+				{
+					//swap to 0th position to assume leader position
+					temp = this.members[0];
+					this.members[0] = this.members[i];
+					this.members[i] = temp;
+					return;
+				}
+			}
 		}
 		
 	}

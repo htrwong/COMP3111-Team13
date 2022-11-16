@@ -2,7 +2,6 @@ package atu_system.atu_app;
 import java.util.*;
 import atu_system.utilities.Student;
 import atu_system.utilities.Team;
-import atu_system.utilities.Database;
 
 //HELPER CLASS
 class SortByK1_desc implements Comparator<Student>
@@ -37,14 +36,12 @@ class SortByRowID implements Comparator<Student>
 public class ATUEngine {
 	
 	private static ATUEngine single_instance = null;
-	private Database db;
 	private Team[] allTeams;
 	
     private ATUEngine()
     {
         //constructor
-    	db = null;
-    	allTeams = null;;
+    	allTeams = null;
     }
     
     public static ATUEngine getInstance()
@@ -53,11 +50,31 @@ public class ATUEngine {
             single_instance = new ATUEngine();
         return single_instance;
     }
+    
+    //FOR TEST PURPOSES
+    public void printOneTeam(int k)
+    {
+    	System.out.println("Team"+(allTeams[k].getId()));
+    	for(int i = 0; i < allTeams[k].getMembers().length; i++)
+    	{
+    		if(allTeams[k].getMembers()[i] != null)
+    		{
+    			System.out.println(allTeams[k].getMembers()[i].getName());
+    		}
+    	}
+    	System.out.println();
+    }
+    
+    public Team[] getAllTeams()
+    {
+    	return allTeams;
+    }
 
-    public void runATU(Database inputData) {
+    public void runATU(Student[] stu) {
     	//ATU ENGINE CODE GOES HERE
-    	this.db = inputData;
-    	Student[] stu = db.getStudentArray();
+    	
+    	//stu = Database.getStudentArray();
+    	
     	int stuNum = stu.length;
     	int teamNums = (int) Math.floor(stuNum/3);
     	
@@ -70,7 +87,8 @@ public class ATUEngine {
     	Student[] k1Priority = new Student[teamNums];
     	Student[] k2Priority = new Student[teamNums];
     	
-    	List<Student> stuList = Arrays.asList(stu);  
+    	//List<Student> stuList = Arrays.asList(stu);  
+    	List<Student> stuList = new ArrayList<>(Arrays.asList(stu));
     	
     	//sort K1
     	Collections.sort(stuList, new SortByK1_desc()); //sort K1
@@ -90,7 +108,10 @@ public class ATUEngine {
     		stuList.remove(0); //pop first element
     	}
     	
-    	Collections.sort(stuList, new SortByRowID());
+    	if(stuList.size() > 1)
+    	{
+    		Collections.sort(stuList, new SortByRowID());
+    	}
     	
     	//create teams
     	for(int k = 0; k < teamNums; k++)
@@ -112,7 +133,11 @@ public class ATUEngine {
     		}
     	}
     			
-    	
+    	//setup leader of each team
+    	for(int i = 0; i < allTeams.length; i++)
+    	{
+    		allTeams[i].setupLeader();
+    	}
     	
     	
     	
