@@ -27,7 +27,7 @@ class SortByRowID implements Comparator<Student>
 	public int compare(Student a, Student b)
 	{
 		//asc order
-		return(a.getrowID() - b.getrowID());
+		return(a.getRowID() - b.getRowID());
 	}
 }
 //HELPER CLASS END
@@ -118,9 +118,9 @@ public class ATUEngine {
     	{
     		allTeams[k] = new Team(k+1);
     		//team leader not decided for now
-    		allTeams[k].appendMem(k1Priority[k]);
-    		allTeams[k].appendMem(k2Priority[k]);
-    		allTeams[k].appendMem(stuList.get(0));;
+    		allTeams[k].appendMember(k1Priority[k]);
+    		allTeams[k].appendMember(k2Priority[k]);
+    		allTeams[k].appendMember(stuList.get(0));;
     		stuList.remove(0);
     	}
     	//If remaining students in stuList:
@@ -128,7 +128,7 @@ public class ATUEngine {
     	{
     		for(int i = 0; i < stuList.size(); i++)
     		{
-    			allTeams[i].appendMem(stuList.get(0));
+    			allTeams[i].appendMember(stuList.get(0));
     			stuList.remove(0);
     		}
     	}

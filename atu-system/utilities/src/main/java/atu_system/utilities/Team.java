@@ -3,6 +3,7 @@ package atu_system.utilities;
 public class Team {
 	
 	private int id;
+	private int numMembers;
 	private Student[] members;
 	public static final int MAX_NUM_OF_TEAM_MEMBERS = 4;
 	
@@ -32,18 +33,20 @@ public class Team {
 		return this.members[i];
 	}
 	
-	public void appendMem(Student mem)
+	public void appendMember(Student mem)
+
 	{
 		for(int i = 0; i < MAX_NUM_OF_TEAM_MEMBERS; i++)
 		{
 			if(this.members[i] == null)
 			{
 				this.members[i] = mem;
+				numMembers++;
 				break;
 			}
 		}
 	}
-	
+
 	public void setupLeader()
 	{
 		
@@ -66,7 +69,13 @@ public class Team {
 				}
 			}
 		}
+	}
+	
 		
+
+	public int getNumberOfMembers() {
+		return numMembers;
+
 	}
 	
 } //END OF CLASS

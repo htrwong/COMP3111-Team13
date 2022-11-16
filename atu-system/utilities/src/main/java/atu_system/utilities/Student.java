@@ -70,7 +70,7 @@ public class Student {
 		return concerns;
 	}
 	
-	public int getrowID()
+	public int getRowID()
 	{
 		return rowID;
 	} 
