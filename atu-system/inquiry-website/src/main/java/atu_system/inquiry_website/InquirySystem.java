@@ -15,8 +15,15 @@ public class InquirySystem {
 		Student[] students = Database.readStudent();
 		Team[] teams = Database.readTeam();
 		
+		System.out.println(teams.length);
+		
 		for (int i = 0; i < teams.length; i++) {
-			Optional<Student> s = Arrays.stream(teams[i].getMembers()).filter(t -> t.getID() == studentID).findFirst();
+			// Find student with studentID in team
+			Optional<Student> s = Arrays.stream(teams[i].getMembers())
+					.filter(t -> (t != null) && (t.getID().equals(studentID)))
+					.findFirst();
+			
+			// If student exists
 			if (s.isPresent()) {
 				Student currentStudent = s.get();
 				Team currentTeam = teams[i];
@@ -25,23 +32,23 @@ public class InquirySystem {
 				result.studentID = studentID;
 				result.studentName = currentStudent.getName();
 				result.teamID = currentTeam.getId();
-				result.teammateNames = (String[]) Arrays.stream(teamMembers).map(m -> m.getName()).toArray();
-				result.k1Average = Arrays.stream(teamMembers).map(m -> m.getK1Energy()).reduce(0, (sum, m) -> sum += m) / currentTeam.getNumberOfMembers();
-				result.k2Average = Arrays.stream(teamMembers).map(m -> m.getK2Energy()).reduce(0, (sum, m) -> sum += m) / currentTeam.getNumberOfMembers();
+				result.teammateNames = Arrays.stream(teamMembers)
+						.filter(t -> (t == null) || !(t.getID().equals(studentID)))
+						.map(m -> m != null ? m.getName() : "-")
+						.toArray(String[]::new);
+				result.k1Average = Arrays.stream(teamMembers)
+						.map(m -> m != null ? m.getK1Energy() : 0)
+						.reduce(0, (sum, m) -> sum += m) / currentTeam.getNumberOfMembers();
+				result.k2Average = Arrays.stream(teamMembers)
+						.map(m -> m != null ? m.getK2Energy() : 0)
+						.reduce(0, (sum, m) -> sum += m) / currentTeam.getNumberOfMembers();
 				result.success = true;
 				
 				return result;
 			}
 		}
 		
-		// Dummy Result
-		result.studentID = studentID;
-		result.studentName = "Kenneth Leung";
-		result.teamID = 1;
-		result.teammateNames = new String[] {"Jaden Tse", "Cherry Tang", "Radi Wong"};
-		result.k1Average = 53.3;
-		result.k2Average = 56.7;
-		result.success = true;
+		result.success = false;
 		
 		return result;
 	}
