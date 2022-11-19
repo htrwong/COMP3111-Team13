@@ -15,13 +15,14 @@ public class Database {
 		studentArray = null;
 	}
 	
-	public static Student[] readStudent(String csvFile){
+	public static Student[] readStudent(File file){
 		ArrayList<Student> studentList = new ArrayList<Student>();
 		
 		try {
-			ClassLoader classLoader = Database.class.getClassLoader();
+			/*ClassLoader classLoader = Database.class.getClassLoader();
 	        InputStream is = classLoader.getResourceAsStream(csvFile);
-	        InputStreamReader isr = new InputStreamReader(is, "UTF-8");
+	        InputStreamReader isr = new InputStreamReader(is, "UTF-8");*/
+	        InputStreamReader isr = new InputStreamReader(new FileInputStream(file), "UTF-8");
 			
 			BufferedReader br = new BufferedReader(isr);
 			br.readLine();

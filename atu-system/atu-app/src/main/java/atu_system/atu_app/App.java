@@ -14,11 +14,9 @@ import javafx.stage.Stage;
 
 public class App extends Application {
     public static void main(String[] args) {
-    	// Use classes from shared library like this:
-    	// System.out.println(SampleUtilsClass.getString());
     	String csvFile = "StudentData.CSV";
-    	Student[] students = Database.readStudent(csvFile);
-    	System.out.println(students[0].getName());
+    	//Student[] students = Database.readStudent(csvFile);
+    	//System.out.println(students[0].getName());
     	
         launch(args);
     }
