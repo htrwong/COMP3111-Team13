@@ -1,12 +1,6 @@
-package atu_system.utilities;
-
-import java.io.*;
-import java.util.ArrayList;
-import org.apache.commons.csv.CSVFormat;
-import org.apache.commons.csv.CSVRecord;
-
 public class Database {
 	
+	private static String studentFile = null;
 	private static final String teamFile = "Team.txt";
 	private static Student[] studentArray;	//read the csv once and store in this array
 	
@@ -15,14 +9,18 @@ public class Database {
 		studentArray = null;
 	}
 	
-	public static Student[] readStudent(File file){
+	public static Student[] readStudent() {
+		return readStudent(studentFile != null ? studentFile : "StudentData.CSV");
+	}
+	
+	public static Student[] readStudent(String csvFile){
+		studentFile = csvFile;
 		ArrayList<Student> studentList = new ArrayList<Student>();
 		
 		try {
-			/*ClassLoader classLoader = Database.class.getClassLoader();
+			ClassLoader classLoader = Database.class.getClassLoader();
 	        InputStream is = classLoader.getResourceAsStream(csvFile);
-	        InputStreamReader isr = new InputStreamReader(is, "UTF-8");*/
-	        InputStreamReader isr = new InputStreamReader(new FileInputStream(file), "UTF-8");
+	        InputStreamReader isr = new InputStreamReader(is, "UTF-8");
 			
 			BufferedReader br = new BufferedReader(isr);
 			br.readLine();
@@ -49,16 +47,22 @@ public class Database {
 		return studentArray;
 	}
 	
+	// Get studentFile filename from inquiry website
+	public static String getStudentFilename() {
+		return studentFile;
+	}
+	
 	public static void writeTeam(Team[] teams) {
 		try {
 		      FileWriter myWriter = new FileWriter(teamFile);
+		      
 		      //write team id and members' rowID
 		      for(Team currentTeam : teams) {
 		    	  String teamInfo = Integer.toString(currentTeam.getId());
 		    	  for(int i = 0; i < Team.MAX_NUM_OF_TEAM_MEMBERS; i++) {
 		    		  if(currentTeam.getMembers()[i] != null) {
 		    			  teamInfo += " ";
-		    			  teamInfo += Integer.toString(currentTeam.getMembers()[i].getrowID());
+		    			  teamInfo += Integer.toString(currentTeam.getMembers()[i].getRowID());
 		    		  }
 		    	  }
 		    	  teamInfo += System.lineSeparator();
@@ -86,7 +90,7 @@ public class Database {
 				//create new team with team id and members' rowID and add to team array
 				Team newTeam = new Team(Integer.parseInt(tempArr[0]));
 				for (int i = 1; i < tempArr.length; i++) {
-					newTeam.appendMem(studentArray[Integer.parseInt(tempArr[i])]);
+					newTeam.appendMember(studentArray[Integer.parseInt(tempArr[i])]);
 				}
 				teamList.add(newTeam);
 			}
