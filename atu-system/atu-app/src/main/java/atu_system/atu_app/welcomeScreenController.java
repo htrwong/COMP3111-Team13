@@ -66,17 +66,17 @@ public class welcomeScreenController {
 		if (file != null) {
 			Student[] students = Database.readStudent(file);
 			subtitle.setText(students[13].getName());
+			//switch to midway screen: three button: show statistic, show personal info, generate team
+			root = FXMLLoader.load(getClass().getResource("/screen2.fxml"));
+			stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+			scene = new Scene(root);
+			stage.setTitle("Automatic Teaming Up");
+			stage.setScene(scene);
+			stage.show();
 		}else {
-			subtitle.setText("invalid file!");
+			subtitle.setText("invalid!");
 		}
 		
-		//switch to midway screen: three button: show statistic, show personal info, generate team
-		root = FXMLLoader.load(getClass().getResource("/screen2.fxml"));
-		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-		scene = new Scene(root);
-		stage.setTitle("Automatic Teaming Up");
-		stage.setScene(scene);
-		stage.show();
     }
 	
 	@FXML
@@ -87,7 +87,7 @@ public class welcomeScreenController {
 		stage_person.setWidth(1000);
 		stage_person.setHeight(500);
 
-		final Label label_person = new Label("Person");
+		final Label label_person = new Label("Students' data");
 		label_person.setFont(new Font("Arial", 20));
 
 		student_table.setEditable(true);
@@ -203,7 +203,7 @@ public class welcomeScreenController {
 		index_column.setCellValueFactory(new PropertyValueFactory<Statistics, String>("index"));
 
 		TableColumn entry_column = new TableColumn("Entry");
-		entry_column.setMinWidth(100);
+		entry_column.setMinWidth(200);
 		entry_column.setCellValueFactory(new PropertyValueFactory<Statistics, String>("entry"));
 
 		TableColumn value_column = new TableColumn("Value");
