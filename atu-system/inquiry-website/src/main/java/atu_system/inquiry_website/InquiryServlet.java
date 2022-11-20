@@ -16,10 +16,8 @@ public class InquiryServlet extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-	  
-		System.out.println("GET");	
 		
-		// Forward request to result.jsp
+		// Forward request to index.jsp
 		RequestDispatcher rd = req.getRequestDispatcher("/index.jsp");
 		rd.forward(req, res);
 		
@@ -27,12 +25,9 @@ public class InquiryServlet extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-	  
-		System.out.println("POST");	
-	  
+		
 		// Get student ID
 		String studentID = req.getParameter("id");
-		System.out.println(studentID);
 	  
 		// Get data output according to student ID
 		InquiryResult result = InquirySystem.inquire(studentID);
@@ -43,6 +38,10 @@ public class InquiryServlet extends HttpServlet {
 		  
 			// Forward request to result.jsp
 			RequestDispatcher rd = req.getRequestDispatcher("/result.jsp");
+			rd.forward(req, res);
+		} else {
+			// Forward request to 404.jsp
+			RequestDispatcher rd = req.getRequestDispatcher("/404.jsp");
 			rd.forward(req, res);
 		}
 	  
