@@ -11,9 +11,9 @@ public class Team {
 	public Team(int id)
 	{
 		this.id = id;
-		this.members = new Student[4];
+		this.members = new Student[MAX_NUM_OF_TEAM_MEMBERS];
 		
-		//initialize student array as null
+		//initialize student array as "invalid" student
 		for(int i = 0; i < MAX_NUM_OF_TEAM_MEMBERS; i++)
 		{
 			this.members[i] = null;
@@ -29,25 +29,53 @@ public class Team {
 		return this.members;
 	}
 	
+	public Student getOneMem(int i) {
+		return this.members[i];
+	}
+	
 	public void appendMember(Student mem)
+
 	{
 		for(int i = 0; i < MAX_NUM_OF_TEAM_MEMBERS; i++)
 		{
-			//ideally need to put leader in members[0]
-			//figure out association class later
-			
-			if(this.members[i] == null) 
+			if(this.members[i] == null)
 			{
 				this.members[i] = mem;
 				numMembers++;
 				break;
 			}
-			
+		}
+	}
+
+	public void setupLeader()
+	{
+		
+		Student temp; 
+		if(this.members[0].getLeaderPreference() == true)
+		{
+
+			return;
+		} else {
+			for(int i = 1; i < MAX_NUM_OF_TEAM_MEMBERS; i++)
+			{
+				if(this.members[i] == null) {return;}
+				if(this.members[i].getLeaderPreference() == true)
+				{
+					//swap to 0th position to assume leader position
+					temp = this.members[0];
+					this.members[0] = this.members[i];
+					this.members[i] = temp;
+					return;
+				}
+			}
 		}
 	}
 	
+		
+
 	public int getNumberOfMembers() {
 		return numMembers;
+
 	}
 	
 } //END OF CLASS
