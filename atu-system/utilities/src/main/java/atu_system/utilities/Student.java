@@ -3,6 +3,7 @@ package atu_system.utilities;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
+import java.util.Comparator;
 
 public class Student {
 	
@@ -103,3 +104,5 @@ public class Student {
 	} 
 	
 } //END OF CLASS
+
+

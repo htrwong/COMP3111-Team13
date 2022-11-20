@@ -8,6 +8,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
@@ -15,7 +16,7 @@ import org.apache.commons.csv.CSVRecord;
 public class Database {
 	
 	private static File studentFile = null;
-	private static final String teamFile = "Team.txt";
+	private static final String teamFile = "../teams.txt";
 	private static Student[] studentArray;	//read the csv once and store in this array
 	
 	//CONSTRUCTOR
@@ -98,14 +99,12 @@ public class Database {
 		ArrayList<Team> teamList = new ArrayList<Team>();
 		final String delimiter = " ";
 		
-		System.out.print("\n");
 		try {
-			File file = new File(teamFile);
-			InputStreamReader isr = new InputStreamReader(new FileInputStream(file), "UTF-8");
-			BufferedReader br = new BufferedReader(isr);
-			String line = " ";
+			Scanner in = new Scanner(new FileReader(teamFile));
+			String line = "";
 			String[] tempArr;
-			while ((line = br.readLine()) != null) {
+			while (in.hasNextLine()) {
+				line = in.nextLine();
 				tempArr = line.split(delimiter);
 				//create new team with team id and members' rowID and add to team array
 				Team newTeam = new Team(Integer.parseInt(tempArr[0]));
@@ -114,7 +113,7 @@ public class Database {
 				}
 				teamList.add(newTeam);
 			}
-			br.close();
+			in.close();
 		} catch (IOException ioe) {
 			ioe.printStackTrace();
 		}
