@@ -112,11 +112,11 @@ public class welcomeScreenController {
 		k2energy_column.setMinWidth(100);
 		k2energy_column.setCellValueFactory(new PropertyValueFactory<Student, String>("k2Energy"));
 
-		TableColumn k3trick1_column = new TableColumn("K3_Trick1");
+		TableColumn k3trick1_column = new TableColumn("K3_Tick1");
 		k3trick1_column.setMinWidth(100);
 		k3trick1_column.setCellValueFactory(new PropertyValueFactory<Student, String>("k3Tick1"));
 
-		TableColumn k3trick2_column = new TableColumn("K3_Trick2");
+		TableColumn k3trick2_column = new TableColumn("K3_Tick2");
 		k3trick2_column.setMinWidth(100);
 		k3trick2_column.setCellValueFactory(new PropertyValueFactory<Student, String>("k3Tick2"));
 
@@ -198,7 +198,7 @@ public class welcomeScreenController {
 
 		stat_table.setEditable(true);
 		
-		TableColumn index_column = new TableColumn("Row_Index");
+		TableColumn index_column = new TableColumn("Row Index");
 		index_column.setMinWidth(100);
 		index_column.setCellValueFactory(new PropertyValueFactory<Statistics, String>("index"));
 
@@ -225,7 +225,16 @@ public class welcomeScreenController {
     }
     
     @FXML
-    void toGenerateTeam(ActionEvent event) { //generate team: call atu engine, switch to output screen
+    void toGenerateTeam(ActionEvent event) throws IOException { //generate team: call atu engine, switch to output screen
+    	ATUEngine.runATU(Database.getStudentArray());
+    	
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("/OutputScreen.fxml"));
+    	root = loader.load();
+		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+		scene = new Scene(root);
+		stage.setTitle("Automatic Teaming Up");
+		stage.setScene(scene);
+		stage.show();
     	
     }
 }
