@@ -4,6 +4,7 @@
 
 plugins {
     id 'atu_system.java-library-conventions'
+    id 'org.openjfx.javafxplugin' version '0.0.13'
 }
 
 dependencies {
@@ -12,4 +13,9 @@ dependencies {
 
 repositories {
     mavenCentral()
+}
+
+javafx {
+    version = "19"
+    modules = [ 'javafx.controls', 'javafx.fxml' ]
 }

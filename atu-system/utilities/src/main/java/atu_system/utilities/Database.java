@@ -1,6 +1,20 @@
+package atu_system.utilities;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+
+import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVRecord;
+
 public class Database {
 	
-	private static String studentFile = null;
+	private static File studentFile = null;
 	private static final String teamFile = "Team.txt";
 	private static Student[] studentArray;	//read the csv once and store in this array
 	
@@ -10,25 +24,31 @@ public class Database {
 	}
 	
 	public static Student[] readStudent() {
-		return readStudent(studentFile != null ? studentFile : "StudentData.CSV");
+		File file = new File("StudentData.CSV");
+		return readStudent(studentFile != null ? studentFile : file);
 	}
 	
-	public static Student[] readStudent(String csvFile){
-		studentFile = csvFile;
+	public static Student[] readStudent(File file){
+		studentFile = file;
 		ArrayList<Student> studentList = new ArrayList<Student>();
 		
 		try {
-			ClassLoader classLoader = Database.class.getClassLoader();
-	        InputStream is = classLoader.getResourceAsStream(csvFile);
-	        InputStreamReader isr = new InputStreamReader(is, "UTF-8");
+			//ClassLoader classLoader = Database.class.getClassLoader();
+	        //InputStream is = classLoader.getResourceAsStream(csvFile);
+	        //InputStreamReader isr = new InputStreamReader(is, "UTF-8");
+	        
+	        InputStreamReader isr = new InputStreamReader(new FileInputStream(file), "UTF-8");
 			
 			BufferedReader br = new BufferedReader(isr);
 			br.readLine();
             Iterable<CSVRecord> records=CSVFormat.DEFAULT.parse(br);
             int studentCount = 0;
             for(CSVRecord record:records){
+            	boolean k1true = "1".equals(record.get(5));
+            	boolean k2true = "1".equals(record.get(6));
+            	boolean preference = "1".equals(record.get(7));
                 studentList.add(new Student(record.get(0), record.get(1), Integer.parseInt(record.get(3)), Integer.parseInt(record.get(4)), 
-						Boolean.parseBoolean(record.get(5)), Boolean.parseBoolean(record.get(6)), Boolean.parseBoolean(record.get(7)), record.get(8), studentCount));
+                		k1true, k2true, preference, record.get(8), studentCount));
 				studentCount++; 
             }
             br.close();
@@ -48,7 +68,7 @@ public class Database {
 	}
 	
 	// Get studentFile filename from inquiry website
-	public static String getStudentFilename() {
+	public static File getStudentFilename() {
 		return studentFile;
 	}
 	
