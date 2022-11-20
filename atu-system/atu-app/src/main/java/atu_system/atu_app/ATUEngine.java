@@ -1,5 +1,7 @@
 package atu_system.atu_app;
 import java.util.*;
+
+import atu_system.utilities.Database;
 import atu_system.utilities.Student;
 import atu_system.utilities.Team;
 
@@ -36,7 +38,7 @@ class SortByRowID implements Comparator<Student>
 public class ATUEngine {
 	
 	private static ATUEngine single_instance = null;
-	private Team[] allTeams;
+	private static Team[] allTeams;
 	
     private ATUEngine()
     {
@@ -70,7 +72,7 @@ public class ATUEngine {
     	return allTeams;
     }
 
-    public void runATU(Student[] stu) {
+    public static void runATU(Student[] stu) {
     	//ATU ENGINE CODE GOES HERE
     	
     	//stu = Database.getStudentArray();
@@ -139,7 +141,7 @@ public class ATUEngine {
     	}
     	
     	
-    	
+    	Database.writeTeam(allTeams);
     	//finish 
     	
     } // END OF RUN_ATU

@@ -23,7 +23,7 @@ public class StudentTest {
 	   
 	@Test 
 	public void testGetId() { 
-	    assertEquals(student.getID(), "12345678"); 
+	    assertEquals(student.getId(), "12345678"); 
 	} 
 	   
 	@Test 
