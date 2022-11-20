@@ -1,5 +1,10 @@
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -15,6 +20,7 @@ public class ATUEngineTest {
 	Student Stu3;
 	Student Stu4;
 	Student[] initStuArr;
+	Student[] noExtra;
 
 	@Before
 	public void setUp() throws Exception {
@@ -34,6 +40,14 @@ public class ATUEngineTest {
 		initStuArr[4] = Stu2;
 		initStuArr[5] = Stu3;
 		initStuArr[6] = Stu4;
+		
+		noExtra = new Student[6];
+		noExtra[0] = Stu2;
+		noExtra[1] = Stu1;
+		noExtra[2] = Jaden;
+		noExtra[3] = Radi;
+		noExtra[4] = Stu3;
+		noExtra[5] = Cherry;
 
 		
 
@@ -51,9 +65,23 @@ public class ATUEngineTest {
 	}
 	
 	@Test
-	public void ATURun() {
+	public void oneExtraStudent() {
 		ATUEngine engine = ATUEngine.getInstance();
 		engine.runATU(initStuArr);
+		System.out.println("oneExtraStudent Test case");
+		for(int i = 0; i < engine.getAllTeams().length; i++)
+		{
+			engine.printOneTeam(i);
+		}
+		
+		
+	}
+	
+	@Test
+	public void noExtraStudent() {
+		ATUEngine engine = ATUEngine.getInstance();
+		engine.runATU(noExtra);
+		System.out.println("noExtraStudent Test case");
 		for(int i = 0; i < engine.getAllTeams().length; i++)
 		{
 			engine.printOneTeam(i);

@@ -87,7 +87,6 @@ public class ATUEngine {
     	Student[] k1Priority = new Student[teamNums];
     	Student[] k2Priority = new Student[teamNums];
     	
-    	//List<Student> stuList = Arrays.asList(stu);  
     	List<Student> stuList = new ArrayList<>(Arrays.asList(stu));
     	
     	//sort K1
