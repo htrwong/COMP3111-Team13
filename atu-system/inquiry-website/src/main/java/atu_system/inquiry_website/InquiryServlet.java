@@ -30,20 +30,28 @@ public class InquiryServlet extends HttpServlet {
 		String studentID = req.getParameter("id");
 	  
 		// Get data output according to student ID
-		InquiryResult result = InquirySystem.inquire(studentID);
-	  
-		if (result.success) {
-			// Attach result to request
-			req.setAttribute("inquiry-result", result);
-		  
-			// Forward request to result.jsp
-			RequestDispatcher rd = req.getRequestDispatcher("/result.jsp");
-			rd.forward(req, res);
-		} else {
+		try {
+			InquiryResult result = InquirySystem.inquire(studentID);
+			
+			if (result.success) {
+				// Attach result to request
+				req.setAttribute("inquiry-result", result);
+			  
+				// Forward request to result.jsp
+				RequestDispatcher rd = req.getRequestDispatcher("/result.jsp");
+				rd.forward(req, res);
+			} else {
+				// Forward request to 404.jsp
+				RequestDispatcher rd = req.getRequestDispatcher("/404.jsp");
+				rd.forward(req, res);
+			}
+		} catch (Exception e) {
 			// Forward request to 404.jsp
 			RequestDispatcher rd = req.getRequestDispatcher("/404.jsp");
 			rd.forward(req, res);
 		}
+	  
+		
 	  
 	}
 

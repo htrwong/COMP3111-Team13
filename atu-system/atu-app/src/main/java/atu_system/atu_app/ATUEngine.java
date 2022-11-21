@@ -1,4 +1,5 @@
 package atu_system.atu_app;
+import java.io.IOException;
 import java.util.*;
 
 import atu_system.utilities.Database;
@@ -72,7 +73,7 @@ public class ATUEngine {
     	return allTeams;
     }
 
-    public static void runATU(Student[] stu) {
+    public static void runATU(Student[] stu) throws Exception {
     	//ATU ENGINE CODE GOES HERE
     	
     	//stu = Database.getStudentArray();

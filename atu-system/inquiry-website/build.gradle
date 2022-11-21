@@ -29,10 +29,13 @@ dependencies {
 compileJava.options.encoding = 'UTF-8'
 compileTestJava.options.encoding = 'UTF-8'
 
-/*
-Add this once the webapp is ready to run :)
+test {
+    useJUnit()
 
+    maxHeapSize = '1G'
+}
+
+/*
 import org.akhikhl.gretty.AppStartTask
 task('run', type: AppStartTask) {}
 */
-

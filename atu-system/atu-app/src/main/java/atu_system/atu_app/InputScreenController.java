@@ -25,7 +25,7 @@ import javafx.scene.text.Font;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-public class welcomeScreenController {
+public class InputScreenController {
 	@FXML
     private Button upload;
 
@@ -63,15 +63,22 @@ public class welcomeScreenController {
 		
 		File file = fc.showOpenDialog(null);
 		
+		/*
 		if (file != null) {
 			Student[] students = Database.readStudent(file);
 			subtitle.setText(students[13].getName());
 		}else {
 			subtitle.setText("invalid file!");
 		}
+		*/
+		try {
+			Student[] students = Database.readStudent(file);
+		} catch (Exception e) {
+			AlertController.alert("Unable to read students file. Please try again or contact the administrator for support.");
+		}
 		
 		//switch to midway screen: three button: show statistic, show personal info, generate team
-		root = FXMLLoader.load(getClass().getResource("/screen2.fxml"));
+		root = FXMLLoader.load(getClass().getResource("/PreprocessingScreen.fxml"));
 		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 		scene = new Scene(root);
 		stage.setTitle("Automatic Teaming Up");
@@ -226,7 +233,11 @@ public class welcomeScreenController {
     
     @FXML
     void toGenerateTeam(ActionEvent event) throws IOException { //generate team: call atu engine, switch to output screen
-    	ATUEngine.runATU(Database.getStudentArray());
+    	try {
+			ATUEngine.runATU(Database.getStudentArray());
+		} catch (Exception e) {
+			AlertController.alert("Unable to run ATU engine. Please try again or contact the administrator for support.");
+		}
     	
     	FXMLLoader loader = new FXMLLoader(getClass().getResource("/OutputScreen.fxml"));
     	root = loader.load();

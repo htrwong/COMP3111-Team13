@@ -1,0 +1,4 @@
+tasks.register('runAll') {
+    dependsOn ':inquiry-website:appRun'
+    dependsOn ':atu-app:run'
+}

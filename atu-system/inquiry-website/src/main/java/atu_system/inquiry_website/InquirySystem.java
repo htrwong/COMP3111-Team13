@@ -9,10 +9,12 @@ import atu_system.utilities.Team;
 
 public class InquirySystem {
 
-	public static InquiryResult inquire (String studentID) {
+	public static InquiryResult inquire (String studentID) throws Exception {
 		InquiryResult result = new InquiryResult();
 		
 		Student[] students = Database.readStudent();
+		System.out.println(students.length);
+		System.out.println(students[49].getName());
 		Team[] teams = Database.readTeam();
 		
 		System.out.println(teams.length);
@@ -28,13 +30,17 @@ public class InquirySystem {
 				Student currentStudent = s.get();
 				Team currentTeam = teams[i];
 				Student[] teamMembers = teams[i].getMembers();
+				Student leader = teams[i].getLeader();
 				
 				result.studentID = studentID;
-				result.studentName = currentStudent.getName();
+				result.studentName = currentStudent.getName() + (currentStudent.getRowID() == leader.getRowID() ? " (Leader)" : "");
 				result.teamID = currentTeam.getId();
 				result.teammateNames = Arrays.stream(teamMembers)
 						.filter(t -> (t == null) || !(t.getId().equals(studentID)))
-						.map(m -> m != null ? m.getName() : "-")
+						.map(m -> m != null 
+							? (m.getName() + (m.getRowID() == leader.getRowID() ? " (Leader)" : "")) 
+							: "-"
+						)
 						.toArray(String[]::new);
 				result.k1Average = Arrays.stream(teamMembers)
 						.map(m -> m != null ? m.getK1Energy() : 0)
