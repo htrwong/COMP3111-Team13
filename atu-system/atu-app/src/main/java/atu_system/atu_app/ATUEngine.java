@@ -1,10 +1,11 @@
 package atu_system.atu_app;
 import java.util.*;
+
+import atu_system.utilities.Database;
 import atu_system.utilities.Student;
 import atu_system.utilities.Team;
 
 //HELPER CLASS
-
 class SortByK1_desc implements Comparator<Student>
 {
 	public int compare(Student a, Student b)
@@ -40,7 +41,7 @@ class SortByRowID implements Comparator<Student>
 public class ATUEngine {
 	
 	private static ATUEngine single_instance = null;
-	private Team[] allTeams;
+	private static Team[] allTeams;
 	
 	/**
 	 * Creates an ATUEngine instance.
@@ -92,7 +93,7 @@ public class ATUEngine {
      * Divides students into teams of 3 (or 4) according to the ATU algorithm.
      * @param stu An array containing all of the Students to be sorted into groups.
      */
-    public void runATU(Student[] stu) {
+    public static void runATU(Student[] stu) {
     	//ATU ENGINE CODE GOES HERE
     	
     	//stu = Database.getStudentArray();
@@ -159,7 +160,8 @@ public class ATUEngine {
     	{
     		allTeams[i].setupLeader();
     	}
-
+    	Database.writeTeam(allTeams);
+    	//finish 
     	
     } // END OF runATU
 

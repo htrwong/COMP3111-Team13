@@ -20,7 +20,7 @@ public class InquirySystem {
 		for (int i = 0; i < teams.length; i++) {
 			// Find student with studentID in team
 			Optional<Student> s = Arrays.stream(teams[i].getMembers())
-					.filter(t -> (t != null) && (t.getID().equals(studentID)))
+					.filter(t -> (t != null) && (t.getId().equals(studentID)))
 					.findFirst();
 			
 			// If student exists
@@ -33,7 +33,7 @@ public class InquirySystem {
 				result.studentName = currentStudent.getName();
 				result.teamID = currentTeam.getId();
 				result.teammateNames = Arrays.stream(teamMembers)
-						.filter(t -> (t == null) || !(t.getID().equals(studentID)))
+						.filter(t -> (t == null) || !(t.getId().equals(studentID)))
 						.map(m -> m != null ? m.getName() : "-")
 						.toArray(String[]::new);
 				result.k1Average = Arrays.stream(teamMembers)

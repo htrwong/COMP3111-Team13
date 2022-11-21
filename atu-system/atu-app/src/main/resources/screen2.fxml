@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="471.0" prefWidth="336.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="atu_system.atu_app.welcomeScreenController">
+   <children>
+      <Button fx:id="viewStudentInfo" layoutX="124.0" layoutY="119.0" mnemonicParsing="false" onAction="#toStudentInfo" text="Student's personal data" />
+      <Button fx:id="viewStatistics" layoutX="124.0" layoutY="163.0" mnemonicParsing="false" onAction="#toStatistics" text="Statistics" />
+      <Button fx:id="generateTeam" layoutX="124.0" layoutY="251.0" mnemonicParsing="false" onAction="#toGenerateTeam" text="Generate Team" />
+      <Label layoutX="42.0" layoutY="124.0" text="View data:" />
+      <Label layoutX="42.0" layoutY="256.0" text="Operation:" />
+   </children>
+</AnchorPane>
