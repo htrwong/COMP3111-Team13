@@ -1,5 +1,9 @@
 package atu_system.utilities;
 
+/**
+ * Represents a Team of Students.
+ *
+ */
 public class Team {
 	
 	private int id;
@@ -7,7 +11,10 @@ public class Team {
 	private Student[] members;
 	public static final int MAX_NUM_OF_TEAM_MEMBERS = 4;
 	
-	//CONSTRUCTOR
+	/**
+	 * Creates an empty Team with the specified Team ID.
+	 * @param id The Team ID.
+	 */
 	public Team(int id)
 	{
 		this.id = id;
@@ -21,18 +28,35 @@ public class Team {
 		
 	}
 	
+	/**
+	 * Gets a Team's ID.
+	 * @return the Team's ID.
+	 */
 	public int getId() {
 		return this.id;
 	}
 	
+	/**
+	 * Gets all members of a Team.
+	 * @return all members of a Team in an array.
+	 */
 	public Student[] getMembers() {
 		return this.members;
 	}
 	
+	/**
+	 * Gets a specific Student from a Team.
+	 * @param i The position of a Student in the members array.
+	 * @return The Student object.
+	 */
 	public Student getOneMem(int i) {
 		return this.members[i];
 	}
 	
+	/**
+	 * Adds a Student to the first available (null) slot in the members[] array.
+	 * @param mem The member to be added.
+	 */
 	public void appendMember(Student mem)
 
 	{
@@ -46,7 +70,10 @@ public class Team {
 			}
 		}
 	}
-
+	
+	/**
+	 * Sets up the leader of the Team by moving that Student to position members[0].
+	 */
 	public void setupLeader()
 	{
 		

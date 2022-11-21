@@ -4,6 +4,7 @@ import atu_system.utilities.Student;
 import atu_system.utilities.Team;
 
 //HELPER CLASS
+
 class SortByK1_desc implements Comparator<Student>
 {
 	public int compare(Student a, Student b)
@@ -32,18 +33,28 @@ class SortByRowID implements Comparator<Student>
 }
 //HELPER CLASS END
 
-
+/**
+ * Singleton. Represents the entire ATU engine.
+ * 
+ */
 public class ATUEngine {
 	
 	private static ATUEngine single_instance = null;
 	private Team[] allTeams;
 	
+	/**
+	 * Creates an ATUEngine instance.
+	 */
     private ATUEngine()
     {
         //constructor
     	allTeams = null;
     }
     
+    /**
+     * Checks if there is an ATUEngine instance - if so, return it; if not, create and return it.
+     * @return The ATUEngine instance.
+     */
     public static ATUEngine getInstance()
     {
         if (single_instance == null)
@@ -51,7 +62,10 @@ public class ATUEngine {
         return single_instance;
     }
     
-    //FOR TEST PURPOSES
+    /**
+     * Prints the team ID and names of the members of a specified team in the array. Used in tests.
+     * @param k The index of the team on the allTeams array.
+     */
     public void printOneTeam(int k)
     {
     	System.out.println("Team"+(allTeams[k].getId()));
@@ -65,11 +79,19 @@ public class ATUEngine {
     	System.out.println();
     }
     
+    /**
+     * Returns all created Teams in a single array.
+     * @return the allTeams array, which holds the created Teams.
+     */
     public Team[] getAllTeams()
     {
     	return allTeams;
     }
 
+    /**
+     * Divides students into teams of 3 (or 4) according to the ATU algorithm.
+     * @param stu An array containing all of the Students to be sorted into groups.
+     */
     public void runATU(Student[] stu) {
     	//ATU ENGINE CODE GOES HERE
     	
@@ -137,11 +159,8 @@ public class ATUEngine {
     	{
     		allTeams[i].setupLeader();
     	}
-    	
-    	
-    	
-    	//finish 
-    	
-    } // END OF RUN_ATU
 
-} //END OF CLASS
+    	
+    } // END OF runATU
+
+} //END OF ATUEngine CLASS
