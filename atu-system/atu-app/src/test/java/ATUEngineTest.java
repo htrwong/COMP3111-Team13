@@ -1,10 +1,5 @@
 import static org.junit.Assert.*;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-
 import org.junit.Before;
 import org.junit.Test;
 
@@ -67,7 +62,7 @@ public class ATUEngineTest {
 	@Test
 	public void oneExtraStudent() {
 		ATUEngine engine = ATUEngine.getInstance();
-		engine.runATU(initStuArr);
+		ATUEngine.runATU(initStuArr);
 		System.out.println("oneExtraStudent Test case");
 		for(int i = 0; i < engine.getAllTeams().length; i++)
 		{
@@ -80,7 +75,7 @@ public class ATUEngineTest {
 	@Test
 	public void noExtraStudent() {
 		ATUEngine engine = ATUEngine.getInstance();
-		engine.runATU(noExtra);
+		ATUEngine.runATU(noExtra);
 		System.out.println("noExtraStudent Test case");
 		for(int i = 0; i < engine.getAllTeams().length; i++)
 		{
