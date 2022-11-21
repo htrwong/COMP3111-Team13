@@ -8,30 +8,46 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
 
+/**
+ * The Database class acts as a database for the ATUEngine.
+ * It stores necessary dataset(i.e. array of student's data) and provide methods to retrieve or record them.
+ * 
+ * @author cherry
+ * @author jaden
+ * @version 
+ */
 public class Database {
 	
-	private static File studentFile = null;
+	private static Path studentFilePath = null;
 	private static final String teamFile = "../teams.txt";
 	private static Student[] studentArray;	//read the csv once and store in this array
 	
-	//CONSTRUCTOR
+	/** 
+	* Class constructor.
+	*/
 	public Database() {
 		studentArray = null;
 	}
 	
 	public static Student[] readStudent() {
-		File file = new File("StudentData.CSV");
-		return readStudent(studentFile != null ? studentFile : file);
+		if(studentFilePath != null) {
+			return readStudent(studentFilePath.toFile());
+		}else {
+			File file = new File("../StudentData.CSV");
+			return readStudent(file);
+		}
 	}
 	
 	public static Student[] readStudent(File file){
-		studentFile = file;
+		studentFilePath = file.toPath();
 		ArrayList<Student> studentList = new ArrayList<Student>();
 		
 		try {
@@ -70,13 +86,19 @@ public class Database {
 	}
 	
 	// Get studentFile filename from inquiry website
-	public static File getStudentFilename() {
-		return studentFile;
+	public static Path getStudentFilename() {
+		return studentFilePath;
 	}
 	
 	public static void writeTeam(Team[] teams) {
 		try {
 		      FileWriter myWriter = new FileWriter(teamFile);
+		      //write file path for first line
+		      String filePath;
+		      if(studentFilePath != null) { filePath = studentFilePath.toString();}
+		      else {filePath = "../StudentData.CSV";}
+		      filePath += System.lineSeparator();
+		      myWriter.write(filePath);
 		      
 		      //write team id and members' rowID
 		      for(Team currentTeam : teams) {
@@ -104,6 +126,13 @@ public class Database {
 			Scanner in = new Scanner(new FileReader(teamFile));
 			String line = "";
 			String[] tempArr;
+			
+			//readStudent()
+			line = in.nextLine();
+			Path p1 = Paths.get(line);
+			File f1 = p1.toFile();
+			readStudent(f1);
+			
 			while (in.hasNextLine()) {
 				line = in.nextLine();
 				tempArr = line.split(delimiter);
