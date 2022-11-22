@@ -23,6 +23,7 @@ import org.apache.commons.csv.CSVRecord;
  * @author cherry
  * @author jaden
  * @version 
+ * @since  
  */
 public class Database {
 	
@@ -37,6 +38,16 @@ public class Database {
 		studentArray = null;
 	}
 	
+	/** 
+	* This method 
+	*
+	* @return          the array of student's data read from
+	* 				   stored file path 			if such path exists.
+	*                  default csv file path	 	otherwise.
+	* 
+	* @see             #readStudent(File)
+	* @since           
+	*/
 	public static Student[] readStudent() {
 		if(studentFilePath != null) {
 			return readStudent(studentFilePath.toFile());
@@ -46,6 +57,16 @@ public class Database {
 		}
 	}
 	
+	/** 
+	* This method
+	*
+	*
+	* @param file      the file to be read and parsed
+	* 
+	* @return          the array of student's data read from the parameter's file
+	* 
+	* @since           
+	*/
 	public static Student[] readStudent(File file){
 		studentFilePath = file.toPath();
 		ArrayList<Student> studentList = new ArrayList<Student>();
