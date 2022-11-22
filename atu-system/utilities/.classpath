@@ -31,49 +31,7 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/Users/cherb/Desktop/comp3111/javafx-sdk-19/lib/javafx-swt.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="/Users/cherb/Desktop/comp3111/javafx-sdk-19/lib/javafx.base.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="/Users/cherb/Desktop/comp3111/javafx-sdk-19/lib/javafx.controls.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="/Users/cherb/Desktop/comp3111/javafx-sdk-19/lib/javafx.fxml.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="/Users/cherb/Desktop/comp3111/javafx-sdk-19/lib/javafx.graphics.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="/Users/cherb/Desktop/comp3111/javafx-sdk-19/lib/javafx.media.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="/Users/cherb/Desktop/comp3111/javafx-sdk-19/lib/javafx.swing.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="/Users/cherb/Desktop/comp3111/javafx-sdk-19/lib/javafx.web.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.buildship.core.gradleclasspathcontainer"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
-	<classpathentry kind="lib" path="src/main/resources/commons-csv-1.9.0.jar"/>
-	<classpathentry kind="lib" path="src/main/resources/commons-csv-1.9.0-sources.jar"/>
 	<classpathentry kind="output" path="bin/default"/>
 </classpath>

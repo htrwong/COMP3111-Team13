@@ -33,6 +33,10 @@ public class Team {
 		return this.members[i];
 	}
 	
+	public Student getLeader() {
+		return getOneMem(0);
+	}
+	
 	public void appendMember(Student mem)
 
 	{
