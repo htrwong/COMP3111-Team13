@@ -67,7 +67,11 @@ public class ATUEngineTest {
 	@Test
 	public void oneExtraStudent() {
 		ATUEngine engine = ATUEngine.getInstance();
-		engine.runATU(initStuArr);
+		try {
+			engine.runATU(initStuArr);
+		} catch (Exception e) {
+			fail("Unable to run ATU Engine.");
+		}
 		System.out.println("oneExtraStudent Test case");
 		for(int i = 0; i < engine.getAllTeams().length; i++)
 		{
@@ -80,7 +84,11 @@ public class ATUEngineTest {
 	@Test
 	public void noExtraStudent() {
 		ATUEngine engine = ATUEngine.getInstance();
-		engine.runATU(noExtra);
+		try {
+			engine.runATU(noExtra);
+		} catch (Exception e) {
+			fail("Unable to run ATU Engine.");
+		}
 		System.out.println("noExtraStudent Test case");
 		for(int i = 0; i < engine.getAllTeams().length; i++)
 		{

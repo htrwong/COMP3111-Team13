@@ -22,7 +22,7 @@ public class App extends Application {
 	@Override
 	public void start(Stage stage) throws Exception {
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(getClass().getResource("/welcomeScreen.fxml"));
+		loader.setLocation(getClass().getResource("/WelcomeScreen.fxml"));
 		Parent root = loader.load(); // Create root from FXML loader when the FXML is ready
 		Scene welcomeScreen = new Scene(root);
 		stage.setTitle("Automatic Teaming Up");
