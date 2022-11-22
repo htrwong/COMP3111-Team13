@@ -25,6 +25,13 @@ import javafx.scene.text.Font;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+/**
+ * The InputScreenController class control on action event of input screen elements, 
+ * including buttons directed to upload file window, table of students' data, table of statistics
+ * and generating team.
+ * 
+ * @author cherry
+ */
 public class InputScreenController {
 	@FXML
     private Button upload;
@@ -52,6 +59,13 @@ public class InputScreenController {
     private TableView<Statistics> stat_table = new TableView<Statistics>();
     private final ObservableList<Statistics> stat_data = FXCollections.observableArrayList();
     
+    /** 
+	* When user click the upoad button, a file chooser window directed to user's home directory will pop up,
+	* where user can only choose a file of csv format. The file uploaded should contain students' data for team forming.
+	* After uploading, the file will be read and the screen would switch to the PreprocessingScreen screen.
+	*
+	* @param event		represent a type of action, like when a button is fired
+	*/
 	@FXML
     void uploadFile(ActionEvent event) throws IOException {
 		//upload the file
@@ -63,29 +77,27 @@ public class InputScreenController {
 		
 		File file = fc.showOpenDialog(null);
 		
-		/*
-		if (file != null) {
-			Student[] students = Database.readStudent(file);
-			subtitle.setText(students[13].getName());
-		}else {
-			subtitle.setText("invalid file!");
-		}
-		*/
 		try {
 			Student[] students = Database.readStudent(file);
+			//switch to midway screen: three button: show statistic, show personal info, generate team
+			root = FXMLLoader.load(getClass().getResource("/PreprocessingScreen.fxml"));
+			stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+			scene = new Scene(root);
+			stage.setTitle("Automatic Teaming Up");
+			stage.setScene(scene);
+			stage.show();
 		} catch (Exception e) {
 			AlertController.alert("Unable to read students file. Please try again or contact the administrator for support.");
-		}
-		
-		//switch to midway screen: three button: show statistic, show personal info, generate team
-		root = FXMLLoader.load(getClass().getResource("/PreprocessingScreen.fxml"));
-		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-		scene = new Scene(root);
-		stage.setTitle("Automatic Teaming Up");
-		stage.setScene(scene);
-		stage.show();
+		}	
     }
 	
+	/** 
+	* When user click the viewStudentInfo button, a table of students' data will be shown in a new window.
+	* Students' data is retrieved from the static array of Database class and put into corresponding column of the table to be shown.
+	* 
+	* @see 	 Database
+	* @param event		represent a type of action, like when a button is fired
+	*/
 	@FXML
     void toStudentInfo(ActionEvent event) { //show personal info: table
 		Stage stage_person = new Stage();
@@ -94,7 +106,7 @@ public class InputScreenController {
 		stage_person.setWidth(1000);
 		stage_person.setHeight(500);
 
-		final Label label_person = new Label("Person");
+		final Label label_person = new Label("Students' data");
 		label_person.setFont(new Font("Arial", 20));
 
 		student_table.setEditable(true);
@@ -156,6 +168,13 @@ public class InputScreenController {
 		
     }
 
+	/** 
+	* When user click the viewStatistics button, a table of statistics data will be shown in a new window.
+	* This method calculate the statistics with data from the studentArray and put them in the corresponding 
+	* cell of the table to be displayed.
+	* 
+	* @param event		represent a type of action, like when a button is fired
+	*/
     @FXML
     void toStatistics(ActionEvent event) { //show statistics: table
     	Stage stage_stat = new Stage();
@@ -210,7 +229,7 @@ public class InputScreenController {
 		index_column.setCellValueFactory(new PropertyValueFactory<Statistics, String>("index"));
 
 		TableColumn entry_column = new TableColumn("Entry");
-		entry_column.setMinWidth(100);
+		entry_column.setMinWidth(200);
 		entry_column.setCellValueFactory(new PropertyValueFactory<Statistics, String>("entry"));
 
 		TableColumn value_column = new TableColumn("Value");
@@ -231,21 +250,30 @@ public class InputScreenController {
 		stage_stat.show();
     }
     
+    /** 
+	* When user click the generateTeam button, the ATU engine will run with the studentArray as input to 
+	* form teams and store results in Database. Then, the screen will switch to the output screen showing
+	* chart of the student data and directing user to a website for team result inquiry.
+	* If the engine failed to run, an error message will pop up.
+	* 
+	* @see   ATUEngine
+	* @see   AlertController
+	* @see   OutputScreenController
+	* @param event		represent a type of action, like when a button is fired
+	*/
     @FXML
     void toGenerateTeam(ActionEvent event) throws IOException { //generate team: call atu engine, switch to output screen
     	try {
 			ATUEngine.runATU(Database.getStudentArray());
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/OutputScreen.fxml"));
+	    	root = loader.load();
+			stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+			scene = new Scene(root);
+			stage.setTitle("Automatic Teaming Up");
+			stage.setScene(scene);
+			stage.show();
 		} catch (Exception e) {
 			AlertController.alert("Unable to run ATU engine. Please try again or contact the administrator for support.");
 		}
-    	
-    	FXMLLoader loader = new FXMLLoader(getClass().getResource("/OutputScreen.fxml"));
-    	root = loader.load();
-		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-		scene = new Scene(root);
-		stage.setTitle("Automatic Teaming Up");
-		stage.setScene(scene);
-		stage.show();
-    	
     }
 }
