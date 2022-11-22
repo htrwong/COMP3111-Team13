@@ -3,7 +3,6 @@
  */
 package atu_system.atu_app;
 
-// Import classes from shared library like this
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -12,10 +11,6 @@ import javafx.stage.Stage;
 
 public class App extends Application {
     public static void main(String[] args) {
-    	//String csvFile = "StudentData.CSV";
-    	//Student[] students = Database.readStudent(csvFile);
-    	//System.out.println(students[0].getName());
-    	
         launch(args);
     }
 

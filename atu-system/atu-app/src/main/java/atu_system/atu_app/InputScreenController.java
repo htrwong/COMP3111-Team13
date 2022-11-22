@@ -63,37 +63,18 @@ public class InputScreenController {
 		
 		File file = fc.showOpenDialog(null);
 		
-		/*
-		if (file != null) {
+		try {
 			Student[] students = Database.readStudent(file);
-			subtitle.setText(students[13].getName());
 			//switch to midway screen: three button: show statistic, show personal info, generate team
-			root = FXMLLoader.load(getClass().getResource("/screen2.fxml"));
+			root = FXMLLoader.load(getClass().getResource("/PreprocessingScreen.fxml"));
 			stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 			scene = new Scene(root);
 			stage.setTitle("Automatic Teaming Up");
 			stage.setScene(scene);
 			stage.show();
-		}else {
-			subtitle.setText("invalid!");
-		}
-		*/
-		try {
-			Student[] students = Database.readStudent(file);
 		} catch (Exception e) {
 			AlertController.alert("Unable to read students file. Please try again or contact the administrator for support.");
-		}
-		
-<<<<<<< HEAD:atu-system/atu-app/src/main/java/atu_system/atu_app/welcomeScreenController.java
-=======
-		//switch to midway screen: three button: show statistic, show personal info, generate team
-		root = FXMLLoader.load(getClass().getResource("/PreprocessingScreen.fxml"));
-		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-		scene = new Scene(root);
-		stage.setTitle("Automatic Teaming Up");
-		stage.setScene(scene);
-		stage.show();
->>>>>>> main:atu-system/atu-app/src/main/java/atu_system/atu_app/InputScreenController.java
+		}	
     }
 	
 	@FXML
@@ -245,17 +226,15 @@ public class InputScreenController {
     void toGenerateTeam(ActionEvent event) throws IOException { //generate team: call atu engine, switch to output screen
     	try {
 			ATUEngine.runATU(Database.getStudentArray());
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/OutputScreen.fxml"));
+	    	root = loader.load();
+			stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+			scene = new Scene(root);
+			stage.setTitle("Automatic Teaming Up");
+			stage.setScene(scene);
+			stage.show();
 		} catch (Exception e) {
 			AlertController.alert("Unable to run ATU engine. Please try again or contact the administrator for support.");
 		}
-    	
-    	FXMLLoader loader = new FXMLLoader(getClass().getResource("/OutputScreen.fxml"));
-    	root = loader.load();
-		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-		scene = new Scene(root);
-		stage.setTitle("Automatic Teaming Up");
-		stage.setScene(scene);
-		stage.show();
-    	
     }
 }
