@@ -25,3 +25,9 @@ javafx {
     version = "19"
     modules = [ 'javafx.controls', 'javafx.fxml' ]
 }
+
+test {
+    useJUnit()
+
+    maxHeapSize = '1G'
+}

@@ -53,6 +53,16 @@ public class Team {
 		return this.members[i];
 	}
 	
+  /**
+  * Gets the leader of a Team.
+  * @return the leader (0th index in team arr)
+  */
+	public Student getLeader() {
+		return getOneMem(0);
+	}
+	
+
+
 	/**
 	 * Adds a Student to the first available (null) slot in the members[] array.
 	 * @param mem The member to be added.

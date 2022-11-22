@@ -1,4 +1,5 @@
 package atu_system.atu_app;
+import java.io.IOException;
 import java.util.*;
 
 import atu_system.utilities.Database;
@@ -89,11 +90,13 @@ public class ATUEngine {
     	return allTeams;
     }
 
+
     /**
      * Divides students into teams of 3 (or 4) according to the ATU algorithm.
      * @param stu An array containing all of the Students to be sorted into groups.
      */
-    public static void runATU(Student[] stu) {
+    public static void runATU(Student[] stu) throws Exception {
+
     	//ATU ENGINE CODE GOES HERE
     	
     	//stu = Database.getStudentArray();
