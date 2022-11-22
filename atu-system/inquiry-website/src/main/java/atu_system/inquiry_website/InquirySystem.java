@@ -24,9 +24,6 @@ public class InquirySystem {
 	public static InquiryResult inquire (String studentID) throws Exception {
 		InquiryResult result = new InquiryResult();
 		
-		Student[] students = Database.readStudent();
-		System.out.println(students.length);
-		System.out.println(students[49].getName());
 		Team[] teams = Database.readTeam();
 		
 		System.out.println(teams.length);

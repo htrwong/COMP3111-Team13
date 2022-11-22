@@ -8,7 +8,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -21,8 +20,6 @@ import org.apache.commons.csv.CSVRecord;
  * 
  * @author cherry
  * @author jaden
- * @version 
- * @since  
  */
 public class Database {
 	
@@ -37,32 +34,27 @@ public class Database {
 		studentArray = null;
 	}
 	
+	/*
 	public static Student[] readStudent() throws Exception {
 		if(studentFilePath != null) {
 			return readStudent(studentFilePath.toFile());
 		}else {
-			File file = new File("../StudentData.CSV");
+			File file = new File("/StudentData.CSV");
 			return readStudent(file);
 		}
 	}
+	*/
 
 	/** 
 	* This method
 	*
 	*
 	* @param file      the file to be read and parsed
-	* 
-	* @return          the array of student's data read from the parameter's file
-	* 
-	* @since           
+	* @return          the array of student's data read from the parameter's file       
 	*/
 	public static Student[] readStudent(File file) throws Exception {
 		studentFilePath = file.toPath();
 		ArrayList<Student> studentList = new ArrayList<Student>();
-		
-		//ClassLoader classLoader = Database.class.getClassLoader();
-        //InputStream is = classLoader.getResourceAsStream(csvFile);
-        //InputStreamReader isr = new InputStreamReader(is, "UTF-8");
         
         InputStreamReader isr = new InputStreamReader(new FileInputStream(file), "UTF-8");
 		
@@ -89,21 +81,23 @@ public class Database {
 		return studentArray;
 	}
 	
-	// Get studentFile filename from inquiry website
+	/* Get studentFile filename from inquiry website
 	public static Path getStudentFilename() {
 		return studentFilePath;
 	}
+	*/
 
 	public static void writeTeam(Team[] teams) throws IOException {
 
 		FileWriter myWriter = new FileWriter(teamFile);
 		
 		//write file path for first line
-	      String filePath;
-	      if(studentFilePath != null) { filePath = studentFilePath.toString();}
-	      else {filePath = "../StudentData.CSV";}
-	      filePath += System.lineSeparator();
-	      myWriter.write(filePath);
+	    String filePath;
+	    if(studentFilePath != null) { filePath = studentFilePath.toString();}
+	    else {filePath = "/StudentData.CSV";}
+	    //filePath += System.lineSeparator();
+	    myWriter.write(filePath);
+	    myWriter.write(System.lineSeparator());
 		  
 		//write team id and members' rowID
 		for(Team currentTeam : teams) {
@@ -130,7 +124,7 @@ public class Database {
 			
 		//readStudent()
 		line = in.nextLine();
-		Path p1 = Paths.get(line);
+		Path p1 = Path.of(line);
 		File f1 = p1.toFile();
 		readStudent(f1);
 		
