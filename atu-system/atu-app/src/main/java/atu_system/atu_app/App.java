@@ -9,11 +9,28 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+/**
+ * App is the root class for the JavaFX application.
+ * It would start the program and display the interface(input screen) for user to proceed.
+ * 
+ * @author cherry
+ */
 public class App extends Application {
+	/**
+	 * The main() serves only as fallback in case the application can not be
+	 * launched through deployment artifacts. NetBeans ignores main().
+	 *
+	 * @param args the command line arguments
+	 */
     public static void main(String[] args) {
         launch(args);
     }
 
+    /**
+	 * The start method create a root Stage object, set the scene to a welcome screen and show the scene.
+	 *
+	 * @param stage		the root Stage object
+	 */
 	@Override
 	public void start(Stage stage) throws Exception {
 		FXMLLoader loader = new FXMLLoader();

@@ -15,8 +15,8 @@ import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
 
 /**
- * The Database class acts as a database for the ATUEngine.
- * It stores necessary dataset(i.e. array of student's data) and provide methods to retrieve or record them.
+ * The Database class acts as a database, providing static methods for retrieving or saving students and teams data.
+ * It is essential for the ATU engine and inquiry website to function properly.
  * 
  * @author cherry
  * @author jaden
@@ -33,24 +33,14 @@ public class Database {
 	public Database() {
 		studentArray = null;
 	}
-	
-	/*
-	public static Student[] readStudent() throws Exception {
-		if(studentFilePath != null) {
-			return readStudent(studentFilePath.toFile());
-		}else {
-			File file = new File("/StudentData.CSV");
-			return readStudent(file);
-		}
-	}
-	*/
 
 	/** 
-	* This method
-	*
+	* This method read the csv file using apache commons csv.
+	* Students' data from the file are parsed, then used to create student objects and
+	* stored in the private static array(studentArray) of this Database class.
 	*
 	* @param file      the file to be read and parsed
-	* @return          the array of student's data read from the parameter's file       
+	* @return          the array of student's data read from the input file       
 	*/
 	public static Student[] readStudent(File file) throws Exception {
 		studentFilePath = file.toPath();
@@ -76,17 +66,23 @@ public class Database {
 		return studentArray;
 	}
 	
-	//get studentArray
+	/** 
+	* This method returns the private static array storing students' data.
+	* @return the array of student's data
+	*/
 	public static Student[] getStudentArray(){
 		return studentArray;
 	}
-	
-	/* Get studentFile filename from inquiry website
-	public static Path getStudentFilename() {
-		return studentFilePath;
-	}
-	*/
 
+	/** 
+	* This method writes the teams data(team ID, team members' row#) to the teamFile, which is a text file, 
+	* as a way to store the teaming results.
+	* The csv file path of students' data is written as the first line so later when reading team data, 
+	* this could be used to refer back to the right file.
+	* Then, each team's data is written in one line separated by a space character.
+	*
+	* @param teams     the array storing teams' data
+	*/
 	public static void writeTeam(Team[] teams) throws IOException {
 
 		FileWriter myWriter = new FileWriter(teamFile);
@@ -114,6 +110,15 @@ public class Database {
 		myWriter.close();
 	}
 	
+	/** 
+	* This method read the teaming results from the teamFile.
+	* The first line of the file is the file path of students' data, the method calls readStudent() with this 
+	* path's file first to update the studentArray before reading team data.
+	* After that, each line contains data of one team, which will be used to create team objects,
+	* these objects will then be stored in an array and returned.
+	*
+	* @return          an array storing teams' data
+	*/
 	public static Team[] readTeam() throws Exception {
 		ArrayList<Team> teamList = new ArrayList<Team>();
 		final String delimiter = " ";
