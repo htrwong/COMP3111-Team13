@@ -1,10 +1,5 @@
 import static org.junit.Assert.*;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-
 import org.junit.Before;
 import org.junit.Test;
 
@@ -27,10 +22,10 @@ public class ATUEngineTest {
 		Jaden = new Student("12345678", "Jaden", 10, 10, false, false, true, "Concerns", 0);
 		Cherry = new Student("98765432", "Cherry", 9, 9, false, false, false, "Concerns", 1);
 		Radi = new Student("24681357", "Radi", 8, 8, false, false, false, "Concerns", 2);
-		Stu1 = new Student("00000001", "Stu1", 5, 3, false, false, true, "Concerns", 3);
+		Stu1 = new Student("00000001", "Stu1", 5, 3, false, false, false, "Concerns", 3);
 		Stu2 = new Student("00000002", "Stu2", 6, 2, false, false, false, "Concerns", 4);
 		Stu3 = new Student("00000003", "Stu3", 3, 1, false, false, false, "Concerns", 5);
-		Stu4 = new Student("00000004", "Stu4", 4, 4, false, false, false, "Concerns", 6);
+		Stu4 = new Student("00000004", "Stu4", 4, 4, false, false, true, "Concerns", 6);
 		
 		initStuArr = new Student[7];
 		initStuArr[0] = Radi;
@@ -67,11 +62,13 @@ public class ATUEngineTest {
 	@Test
 	public void oneExtraStudent() {
 		ATUEngine engine = ATUEngine.getInstance();
+
 		try {
 			engine.runATU(initStuArr);
 		} catch (Exception e) {
 			fail("Unable to run ATU Engine.");
 		}
+
 		System.out.println("oneExtraStudent Test case");
 		for(int i = 0; i < engine.getAllTeams().length; i++)
 		{
@@ -84,11 +81,13 @@ public class ATUEngineTest {
 	@Test
 	public void noExtraStudent() {
 		ATUEngine engine = ATUEngine.getInstance();
+
 		try {
 			engine.runATU(noExtra);
 		} catch (Exception e) {
 			fail("Unable to run ATU Engine.");
 		}
+
 		System.out.println("noExtraStudent Test case");
 		for(int i = 0; i < engine.getAllTeams().length; i++)
 		{
