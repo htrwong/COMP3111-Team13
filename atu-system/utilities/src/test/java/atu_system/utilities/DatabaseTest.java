@@ -1,4 +1,4 @@
-package utilities;
+package atu_system.utilities;
 
 import static org.junit.Assert.*;
 
