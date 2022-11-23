@@ -1,3 +1,5 @@
+package atu_system.atu_app;
+
 import static org.junit.Assert.*;
 
 import org.junit.Before;

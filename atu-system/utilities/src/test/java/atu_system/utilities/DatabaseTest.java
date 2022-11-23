@@ -1,4 +1,4 @@
-package utilities;
+package atu_system.utilities;
 
 import static org.junit.Assert.*;
 
@@ -32,18 +32,6 @@ public class DatabaseTest {
 		assertEquals(s1.getLeaderPreference(), s2.getLeaderPreference());
 		assertEquals(s1.getConcerns(), s2.getConcerns());
 		assertEquals(s1.getRowID(), s2.getRowID());
-	}
-
-	@Test
-	public void testDefaultReadStudentWithoutArguments() {
-		Student[] students = new Student[0];
-		try {
-			students = Database.readStudent();
-		} catch (Exception e) {
-			fail("Failed to read students.");
-		}
-		assertEquals(students.length, 100);
-		assertStudentsEqual(students[0], firstStudentOnStudentDataCSV);
 	}
 	
 	@Test
