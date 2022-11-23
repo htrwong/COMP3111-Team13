@@ -1,7 +1,7 @@
 ## COMP3111 Project Team 13
 
 ### How to run the project
-Use the gradle task `runAll` in `atu-system` (root project) to run all three subprojects at the same time.
+Use the gradle task `runAll` under `other` category under `atu-system` (root project) to run all three subprojects at the same time on Eclipse. Kindly enable "Show All Tasks" in the Gradle Task tab in Eclipse to see the `runAll` task.
 
 ### Members
 
