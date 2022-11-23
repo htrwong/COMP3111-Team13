@@ -90,7 +90,10 @@ public class Database {
 		//write file path for first line
 	    String filePath;
 	    if(studentFilePath != null) { filePath = studentFilePath.toString();}
-	    else {filePath = "/StudentData.CSV";}
+	    else {
+	    	File file = new File("../StudentData.CSV");
+	    	filePath = file.toPath().toString();
+	    }
 	    //filePath += System.lineSeparator();
 	    myWriter.write(filePath);
 	    myWriter.write(System.lineSeparator());
