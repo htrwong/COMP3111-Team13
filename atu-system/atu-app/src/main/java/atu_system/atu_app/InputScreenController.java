@@ -53,11 +53,11 @@ public class InputScreenController {
     private Parent root;
     final FileChooser fc = new FileChooser();
     
-    private TableView<Student> student_table = new TableView<Student>();
-	private final static ObservableList<Student> student_data = FXCollections.observableArrayList();
+    //private TableView<Student> student_table = new TableView<Student>();
+	//private final static ObservableList<Student> student_data = FXCollections.observableArrayList();
 	
-    private TableView<Statistics> stat_table = new TableView<Statistics>();
-    private final ObservableList<Statistics> stat_data = FXCollections.observableArrayList();
+    //private TableView<Statistics> stat_table = new TableView<Statistics>();
+    //private final ObservableList<Statistics> stat_data = FXCollections.observableArrayList();
     
     /** 
 	* When user click the upoad button, a file chooser window directed to user's home directory will pop up,
@@ -100,6 +100,9 @@ public class InputScreenController {
 	*/
 	@FXML
     void toStudentInfo(ActionEvent event) { //show personal info: table
+		TableView<Student> student_table = new TableView<Student>();
+		ObservableList<Student> student_data = FXCollections.observableArrayList();
+		
 		Stage stage_person = new Stage();
 		Scene scene_person = new Scene(new Group());
 		stage_person.setTitle("Table of students' personal data");
@@ -177,6 +180,9 @@ public class InputScreenController {
 	*/
     @FXML
     void toStatistics(ActionEvent event) { //show statistics: table
+    	TableView<Statistics> stat_table = new TableView<Statistics>();
+    	ObservableList<Statistics> stat_data = FXCollections.observableArrayList();
+    	
     	Stage stage_stat = new Stage();
     	Scene scene_stat = new Scene(new Group());
 		stage_stat.setTitle("Table of Statistics data");
