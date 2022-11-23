@@ -3,70 +3,48 @@ package atu_system.utilities;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
-import java.net.URL;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
 
+/**
+ * The Database class acts as a database, providing static methods for retrieving or saving students and teams data.
+ * It is essential for the ATU engine and inquiry website to function properly.
+ * 
+ * @author cherry
+ * @author jaden
+ */
 public class Database {
 	
-	private static File studentFile = null;
+	private static Path studentFilePath = null;
 	private static final String teamFile = "../teams.txt";
 	private static Student[] studentArray;	//read the csv once and store in this array
 	
-	//CONSTRUCTOR
+	/** 
+	* Class constructor.
+	*/
 	public Database() {
 		studentArray = null;
 	}
-	
-	public static File getResourceAsFile(String resourcePath) {
-	    try {
-	        InputStream in = ClassLoader.getSystemClassLoader().getResourceAsStream(resourcePath);
-	        if (in == null) {
-	            return null;
-	        }
 
-	        File tempFile = File.createTempFile(String.valueOf(in.hashCode()), ".tmp");
-	        tempFile.deleteOnExit();
-
-	        try (FileOutputStream out = new FileOutputStream(tempFile)) {
-	            //copy stream
-	            byte[] buffer = new byte[1024];
-	            int bytesRead;
-	            while ((bytesRead = in.read(buffer)) != -1) {
-	                out.write(buffer, 0, bytesRead);
-	            }
-	        }
-	        return tempFile;
-	    } catch (IOException e) {
-	        e.printStackTrace();
-	        return null;
-	    }
-	}
-	
-	public static Student[] readStudent() throws Exception {
-        File file = getResourceAsFile("StudentData.CSV");
-		
-		return readStudent(studentFile != null ? studentFile : file);
-	}
-	
+	/** 
+	* This method read the csv file using apache commons csv.
+	* Students' data from the file are parsed, then used to create student objects and
+	* stored in the private static array(studentArray) of this Database class.
+	*
+	* @param file      the file to be read and parsed
+	* @return          the array of student's data read from the input file       
+	*/
 	public static Student[] readStudent(File file) throws Exception {
-		studentFile = file;
+		studentFilePath = file.toPath();
 		ArrayList<Student> studentList = new ArrayList<Student>();
-		
-		//ClassLoader classLoader = Database.class.getClassLoader();
-        //InputStream is = classLoader.getResourceAsStream(csvFile);
-        //InputStreamReader isr = new InputStreamReader(is, "UTF-8");
         
         InputStreamReader isr = new InputStreamReader(new FileInputStream(file), "UTF-8");
 		
@@ -88,14 +66,34 @@ public class Database {
 		return studentArray;
 	}
 	
-	//get studentArray
+	/** 
+	* This method returns the private static array storing students' data.
+	* @return the array of student's data
+	*/
 	public static Student[] getStudentArray(){
 		return studentArray;
 	}
-	
+
+	/** 
+	* This method writes the teams data(team ID, team members' row#) to the teamFile, which is a text file, 
+	* as a way to store the teaming results.
+	* The csv file path of students' data is written as the first line so later when reading team data, 
+	* this could be used to refer back to the right file.
+	* Then, each team's data is written in one line separated by a space character.
+	*
+	* @param teams     the array storing teams' data
+	*/
 	public static void writeTeam(Team[] teams) throws IOException {
 
 		FileWriter myWriter = new FileWriter(teamFile);
+		
+		//write file path for first line
+	    String filePath;
+	    if(studentFilePath != null) { filePath = studentFilePath.toString();}
+	    else {filePath = "/StudentData.CSV";}
+	    //filePath += System.lineSeparator();
+	    myWriter.write(filePath);
+	    myWriter.write(System.lineSeparator());
 		  
 		//write team id and members' rowID
 		for(Team currentTeam : teams) {
@@ -110,16 +108,32 @@ public class Database {
 			myWriter.write(teamInfo);
 		}
 		myWriter.close();
-
 	}
 	
+	/** 
+	* This method read the teaming results from the teamFile.
+	* The first line of the file is the file path of students' data, the method calls readStudent() with this 
+	* path's file first to update the studentArray before reading team data.
+	* After that, each line contains data of one team, which will be used to create team objects,
+	* these objects will then be stored in an array and returned.
+	*
+	* @return          an array storing teams' data
+	*/
 	public static Team[] readTeam() throws Exception {
 		ArrayList<Team> teamList = new ArrayList<Team>();
 		final String delimiter = " ";
-		
+
 		Scanner in = new Scanner(new FileReader(teamFile));
 		String line = "";
 		String[] tempArr;
+			
+		//readStudent()
+		line = in.nextLine();
+		Path p1 = Path.of(line);
+		File f1 = p1.toFile();
+		readStudent(f1);
+		
+		
 		while (in.hasNextLine()) {
 			line = in.nextLine();
 			tempArr = line.split(delimiter);

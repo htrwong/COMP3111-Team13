@@ -13,11 +13,20 @@ import javafx.fxml.FXML;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
 
+/**
+ * The OutputScreenController class control on action event of output screen elements, 
+ * including the chart a button directed to the website for team results inquiry.
+ * 
+ * @author jaden
+ */
 public class OutputScreenController {
 	
 	@FXML
 	private LineChart chart;
 	
+	/**
+	 * Generating and showing a 2d line chart of students' key energies comparison.
+	 */
 	@FXML
     public void initialize() {
         XYChart.Series k1 = new XYChart.Series();
@@ -40,6 +49,13 @@ public class OutputScreenController {
         chart.getData().add(k2);
     }
 	
+	/**
+	 * When the button is clicked, the website for team results inquiry will be opened, where user can 
+	 * input student ID to get the student's corresponding team information.
+	 * 
+	 * @see   InquirySystem
+	 * @param event		represent a type of action, like when a button is fired
+	 */
 	public void accessInquiryWebsite(ActionEvent e) throws IOException, URISyntaxException {
 		if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
 		    Desktop.getDesktop().browse(new URI("http://localhost:8080/inquiry-website"));
