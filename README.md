@@ -2,9 +2,6 @@
 
 ### How to run the project
 Use the gradle task `runAll` in `atu-system` (root project) to run all three subprojects at the same time.
-```
-./gradlew runAll --parallel
-```
 
 ### Members
 
